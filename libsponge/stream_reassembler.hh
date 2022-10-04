@@ -3,10 +3,10 @@
 
 #include "byte_stream.hh"
 
-#include <cstdint>
-#include <string>
-#include <deque>
 #include <algorithm>
+#include <cstdint>
+#include <deque>
+#include <string>
 
 //! \brief A class that assembles a series of excerpts from a byte stream (possibly out of order,
 //! possibly overlapping) into an in-order byte stream.
@@ -18,7 +18,7 @@ class StreamReassembler {
     size_t _capacity;    //!< The maximum number of bytes
     size_t _assembled_bytes{};
     size_t _unassembled_bytes{};
-    
+
     std::deque<char> _buffer;
     std::deque<bool> _buffer_bitmap;
 
@@ -45,6 +45,8 @@ class StreamReassembler {
     const ByteStream &stream_out() const { return _output; }
     ByteStream &stream_out() { return _output; }
     //!@}
+
+    const size_t &assembled_bytes() const { return _assembled_bytes; }
 
     //! The number of bytes in the substrings stored but not yet reassembled
     //!
